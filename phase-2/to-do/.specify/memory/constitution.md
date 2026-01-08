@@ -1,42 +1,61 @@
 <!--
-Sync Impact Report:
-Version change: None (initial creation) -> 0.1.0
-List of modified principles: All principles are newly defined.
-Added sections: All sections are newly defined.
-Removed sections: None
-Templates requiring updates:
-  - .specify/templates/plan-template.md: ⚠ pending
-  - .specify/templates/spec-template.md: ⚠ pending
-  - .specify/templates/tasks-template.md: ⚠ pending
-  - .specify/commands/sp.adr.toml: ⚠ pending
-  - .specify/commands/sp.analyze.toml: ⚠ pending
-  - .specify/commands/sp.checklist.toml: ⚠ pending
-  - .specify/commands/sp.clarify.toml: ⚠ pending
-  - .specify/commands/sp.constitution.toml: ✅ updated
-  - .specify/commands/sp.git.commit_pr.toml: ⚠ pending
-  - .specify/commands/sp.implement.toml: ⚠ pending
-  - .specify/commands/sp.phr.toml: ⚠ pending
-  - .specify/commands/sp.plan.toml: ⚠ pending
-  - .specify/commands/sp.reverse-engineer.toml: ⚠ pending
-  - .specify/commands/sp.specify.toml: ⚠ pending
-  - .specify/commands/sp.tasks.toml: ⚠ pending
-  - .specify/commands/sp.taskstoissues.toml: ⚠ pending
-Follow-up TODOs: Ensure all dependent templates and command files are updated to align with the new constitution principles and technology stack.
+<SyncImpactReport>
+  <VersionChange>
+    <OldVersion>0.0.0</OldVersion>
+    <NewVersion>1.0.0</NewVersion>
+    <Rationale>Initial constitution for Phase II - Todo Full-Stack Web Application.</Rationale>
+  </VersionChange>
+  <ModifiedPrinciples>
+    <Principle>All principles are new as this is the initial constitution.</Principle>
+  </ModifiedPrinciples>
+  <AddedSections>
+    <Section>Phase Context</Section>
+    <Section>Core Objective</Section>
+    <Section>Mandatory Rules</Section>
+    <Section>Fixed Technology Stack</Section>
+    <Section>Authentication & Security (Critical)</Section>
+    <Section>API Rules</Section>
+    <Section>Database Rules</Section>
+    <Section>Frontend Rules</Section>
+    <Section>Backend Rules</Section>
+    <Section>Feature Scope — Phase II Only</Section>
+    <Section>Development Workflow</Section>
+    <Section>Output Expectations</Section>
+  </AddedSections>
+  <RemovedSections>
+    <Section>None (Initial constitution)</Section>
+  </RemovedSections>
+  <TemplatesRequiringUpdates>
+    <Template path=".specify/templates/plan-template.md" status="⚠ pending"/>
+    <Template path=".specify/templates/spec-template.md" status="⚠ pending"/>
+    <Template path=".specify/templates/tasks-template.md" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.adr.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.plan.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.constitution.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.implement.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.specify.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.tasks.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.phr.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.checklist.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.analyze.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.reverse-engineer.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.git.commit_pr.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.clarify.toml" status="⚠ pending"/>
+    <Template path=".gemini/commands/sp.taskstoissues.toml" status="⚠ pending"/>
+  </TemplatesRequiringUpdates>
+  <FollowupTODOs>
+    <TODO>Ensure governance dates and project name are accurately reflected in the Sync Impact Report upon final versioning.</TODO>
+  </FollowupTODOs>
+</SyncImpactReport>
 -->
-# Spec-Kit Constitution — Phase II
+# Spec-Kit Constitution — Phase II 
 
 You are Claude Code operating under Spec-Driven Development rules.
 
-## Project
-- **Name**: Todo Full-Stack Web Application
-- **Constitution Version**: 0.1.0
-- **Ratification Date**: 2026-01-07
-- **Last Amended Date**: 2026-01-07
-
 ## Phase Context
-Current Phase: Phase II — Todo Full-Stack Web Application
-Start Mode: Fresh Start
+Current Phase: Phase II — Todo Full-Stack Web Application  
 
+This project does NOT reuse or transform Phase I (console app).
 All functionality is implemented directly as a web application.
 
 ## Core Objective
@@ -106,7 +125,6 @@ Allowed:
 - User-specific task isolation
 
 Not Allowed:
-- Console application logic
 - AI chatbot
 - Task sharing
 - Admin roles
@@ -120,15 +138,8 @@ Not Allowed:
 
 ## Output Expectations
 - Clean and readable code
-- No legacy or console-based logic
 - Environment variables for secrets
 - Production-ready structure
 - Clear separation between frontend and backend
 
 You must strictly follow this constitution for all Phase II work.
-
----
-Governance:
-This constitution may be amended by mutual agreement of the project architects.
-Version changes will follow semantic versioning.
-Compliance will be reviewed at the beginning of each phase.
