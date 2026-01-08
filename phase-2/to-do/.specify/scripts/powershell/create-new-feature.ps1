@@ -6,8 +6,7 @@ param(
     [string]$ShortName,
     [int]$Number = 0,
     [switch]$Help,
-    [Parameter(ValueFromRemainingArguments = $true)]
-    [string[]]$FeatureDescription
+    [string]$FeatureDescription
 )
 $ErrorActionPreference = 'Stop'
 
@@ -129,27 +128,11 @@ function ConvertTo-CleanBranchName {
     
     return $Name.ToLower() -replace '[^a-z0-9]', '-' -replace '-{2,}', '-' -replace '^-', '' -replace '-$', ''
 }
-$fallbackRoot = (Find-RepositoryRoot -StartDir $PSScriptRoot)
-if (-not $fallbackRoot) {
-    Write-Error "Error: Could not determine repository root. Please run this script from within the repository."
-    exit 1
-}
+$projectRoot = (Resolve-Path (Join-Path $PSScriptRoot "../../.."))
 
-try {
-    $repoRoot = git rev-parse --show-toplevel 2>$null
-    if ($LASTEXITCODE -eq 0) {
-        $hasGit = $true
-    } else {
-        throw "Git not available"
-    }
-} catch {
-    $repoRoot = $fallbackRoot
-    $hasGit = $false
-}
+# Set-Location $repoRoot # This was causing issues with relative paths in monorepo setup
 
-Set-Location $repoRoot
-
-$specsDir = Join-Path $repoRoot 'specs'
+$specsDir = Join-Path $projectRoot 'specs'
 New-Item -ItemType Directory -Path $specsDir -Force | Out-Null
 
 # Function to generate branch name with stop word filtering and length filtering
@@ -210,7 +193,7 @@ if ($ShortName) {
 if ($Number -eq 0) {
     if ($hasGit) {
         # Check existing branches on remotes
-        $Number = Get-NextBranchNumber -SpecsDir $specsDir
+        $Number = Get-NextBranchNumber -SpecsDir $specsDir # Pass $specsDir for local search
     } else {
         # Fall back to local directory check
         $Number = (Get-HighestNumberFromSpecs -SpecsDir $specsDir) + 1
@@ -243,7 +226,9 @@ if ($branchName.Length -gt $maxBranchLength) {
 
 if ($hasGit) {
     try {
+        Set-Location $projectRoot # Ensure git command runs from project root
         git checkout -b $branchName | Out-Null
+        Set-Location $repoRoot # Restore original git root location
     } catch {
         Write-Warning "Failed to create git branch: $branchName"
     }
@@ -254,7 +239,7 @@ if ($hasGit) {
 $featureDir = Join-Path $specsDir $branchName
 New-Item -ItemType Directory -Path $featureDir -Force | Out-Null
 
-$template = Join-Path $repoRoot '.specify/templates/spec-template.md'
+$template = Join-Path $projectRoot '.specify/templates/spec-template.md'
 $specFile = Join-Path $featureDir 'spec.md'
 if (Test-Path $template) {
     Copy-Item $template $specFile -Force
@@ -264,7 +249,7 @@ if (Test-Path $template) {
 
 # Auto-create history/prompts/<branch-name>/ directory (same as specs/<branch-name>/)
 # This keeps naming consistent across branch, specs, and prompts directories
-$promptsDir = Join-Path $repoRoot 'history' 'prompts' $branchName
+$promptsDir = Join-Path $projectRoot 'history' 'prompts' $branchName
 New-Item -ItemType Directory -Path $promptsDir -Force | Out-Null
 
 # Set the SPECIFY_FEATURE environment variable for the current session

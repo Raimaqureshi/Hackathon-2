@@ -135,9 +135,9 @@ Based on `@specs/database/schema.md`, the primary entities are `User` and `Task`
 
 **Task Entity**:
 *   `id`: `UUID` (Primary Key)
-*   `description`: `VARCHAR(255)` (Not Null)
-*   `is_complete`: `BOOLEAN` (Not Null, Default: `false`)
-*   `user_id`: `UUID` (Foreign Key to `User.id`, Not Null)
+*   `description`: `VARCHAR(255)` (Not Null, max 255 characters, not empty) - The content of the task.
+*   `is_complete`: `BOOLEEN` (Not Null, Default: `false`) - Indicates whether the task is completed.
+*   `user_id`: `UUID` (Foreign Key to `User.id`, Not Null) - The ID of the user who owns this task.
 *   `created_at`: `TIMESTAMP WITH TIME ZONE`
 *   `updated_at`: `TIMESTAMP WITH TIME ZONE`
 

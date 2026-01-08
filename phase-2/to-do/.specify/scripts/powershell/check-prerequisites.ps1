@@ -119,6 +119,13 @@ if ((Test-Path $paths.CONTRACTS_DIR) -and (Get-ChildItem -Path $paths.CONTRACTS_
 
 if (Test-Path $paths.QUICKSTART) { $docs += 'quickstart.md' }
 
+# Add all .md files within the feature directory and its subdirectories
+Get-ChildItem -Path $paths.FEATURE_DIR -Filter "*.md" -Recurse | ForEach-Object {
+    # Make path relative to FEATURE_DIR
+    $relativePath = $_.FullName.Substring($paths.FEATURE_DIR.Length + 1)
+    $docs += $relativePath
+}
+
 # Include tasks.md if requested and it exists
 if ($IncludeTasks -and (Test-Path $paths.TASKS)) { 
     $docs += 'tasks.md' 

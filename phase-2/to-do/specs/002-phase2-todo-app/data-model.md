@@ -37,10 +37,4 @@ This document defines the primary data entities for the Todo Full-Stack Web Appl
     *   `updated_at`: `datetime` (Not Null, Default: current timestamp, On Update: current timestamp) - Timestamp of last update.
 *   **Relationships**:
     *   Belongs to one `User` (many-to-one relationship).
-*   **Validation Rules**:
-    *   `description`: Must not be empty, maximum length of 255 characters.
-
-## Relationships
-
-*   **User to Task**: A `User` can have multiple `Task`s, but each `Task` belongs to exactly one `User`. This relationship is enforced via the `user_id` foreign key in the `tasks` table.
 *   **Ownership Enforcement**: All operations on `Task` entities will be filtered by the `user_id` of the authenticated user, ensuring strict data isolation.
