@@ -1,145 +1,50 @@
-<!--
-<SyncImpactReport>
-  <VersionChange>
-    <OldVersion>0.0.0</OldVersion>
-    <NewVersion>1.0.0</NewVersion>
-    <Rationale>Initial constitution for Phase II - Todo Full-Stack Web Application.</Rationale>
-  </VersionChange>
-  <ModifiedPrinciples>
-    <Principle>All principles are new as this is the initial constitution.</Principle>
-  </ModifiedPrinciples>
-  <AddedSections>
-    <Section>Phase Context</Section>
-    <Section>Core Objective</Section>
-    <Section>Mandatory Rules</Section>
-    <Section>Fixed Technology Stack</Section>
-    <Section>Authentication & Security (Critical)</Section>
-    <Section>API Rules</Section>
-    <Section>Database Rules</Section>
-    <Section>Frontend Rules</Section>
-    <Section>Backend Rules</Section>
-    <Section>Feature Scope — Phase II Only</Section>
-    <Section>Development Workflow</Section>
-    <Section>Output Expectations</Section>
-  </AddedSections>
-  <RemovedSections>
-    <Section>None (Initial constitution)</Section>
-  </RemovedSections>
-  <TemplatesRequiringUpdates>
-    <Template path=".specify/templates/plan-template.md" status="⚠ pending"/>
-    <Template path=".specify/templates/spec-template.md" status="⚠ pending"/>
-    <Template path=".specify/templates/tasks-template.md" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.adr.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.plan.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.constitution.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.implement.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.specify.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.tasks.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.phr.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.checklist.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.analyze.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.reverse-engineer.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.git.commit_pr.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.clarify.toml" status="⚠ pending"/>
-    <Template path=".gemini/commands/sp.taskstoissues.toml" status="⚠ pending"/>
-  </TemplatesRequiringUpdates>
-  <FollowupTODOs>
-    <TODO>Ensure governance dates and project name are accurately reflected in the Sync Impact Report upon final versioning.</TODO>
-  </FollowupTODOs>
-</SyncImpactReport>
--->
-# Spec-Kit Constitution — Phase II 
+# [PROJECT_NAME] Constitution
+<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
-You are Claude Code operating under Spec-Driven Development rules.
+## Core Principles
 
-## Phase Context
-Current Phase: Phase II — Todo Full-Stack Web Application  
+### [PRINCIPLE_1_NAME]
+<!-- Example: I. Library-First -->
+[PRINCIPLE_1_DESCRIPTION]
+<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-This project does NOT reuse or transform Phase I (console app).
-All functionality is implemented directly as a web application.
+### [PRINCIPLE_2_NAME]
+<!-- Example: II. CLI Interface -->
+[PRINCIPLE_2_DESCRIPTION]
+<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-## Core Objective
-Build a secure, multi-user, full-stack Todo web application from scratch using modern web technologies and persistent storage.
+### [PRINCIPLE_3_NAME]
+<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+[PRINCIPLE_3_DESCRIPTION]
+<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-## Mandatory Rules
-1. Treat this as a greenfield project.
-2. Specs are the single source of truth.
-3. Always read relevant specs before implementation.
-4. If implementation conflicts with specs, fix the code — not the spec (unless told otherwise).
-5. Do not implement features not explicitly defined in specs.
+### [PRINCIPLE_4_NAME]
+<!-- Example: IV. Integration Testing -->
+[PRINCIPLE_4_DESCRIPTION]
+<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-## Fixed Technology Stack
-- Frontend: Next.js 16+ (App Router), TypeScript, Tailwind CSS
-- Backend: Python FastAPI
-- ORM: SQLModel
-- Database: Neon Serverless PostgreSQL
-- Authentication: Better Auth (JWT-based)
-- Spec System: GitHub Spec-Kit Plus + Claude Code
+### [PRINCIPLE_5_NAME]
+<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+[PRINCIPLE_5_DESCRIPTION]
+<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-## Authentication & Security (Critical)
-1. Authentication is REQUIRED from day one.
-2. Better Auth runs ONLY on the frontend.
-3. Better Auth MUST issue JWT tokens.
-4. Every API request MUST include:
-   Authorization: Bearer <JWT_TOKEN>
-5. Backend MUST:
-   - Verify JWT using BETTER_AUTH_SECRET
-   - Decode token and extract user_id
-   - Reject requests without valid JWT (401)
-   - Enforce task ownership on every operation
+## [SECTION_2_NAME]
+<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-## API Rules
-1. All endpoints must be RESTful.
-2. Base path: `/api/`
-3. API behavior must follow:
-   @specs/api/rest-endpoints.md
-4. user_id from JWT is the source of truth.
-5. user_id in URL must match authenticated user.
+[SECTION_2_CONTENT]
+<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
 
-## Database Rules
-1. Follow schema defined in:
-   @specs/database/schema.md
-2. Tasks MUST include user_id.
-3. All queries MUST be filtered by authenticated user_id.
-4. Use SQLModel for all DB operations.
+## [SECTION_3_NAME]
+<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-## Frontend Rules
-1. Use Next.js App Router.
-2. Server Components by default.
-3. Client Components only for interactivity and auth.
-4. Centralized API client is mandatory.
-5. Attach JWT token to all API requests.
-6. UI must be responsive and accessible.
+[SECTION_3_CONTENT]
+<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
-## Backend Rules
-1. Use FastAPI dependencies or middleware for JWT verification.
-2. Never trust client-provided user identifiers.
-3. Use Pydantic models for validation.
-4. Handle all errors with proper HTTP status codes.
+## Governance
+<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-## Feature Scope — Phase II Only
-Allowed:
-- User signup & signin
-- Task CRUD operations
-- Toggle task completion
-- User-specific task isolation
+[GOVERNANCE_RULES]
+<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-Not Allowed:
-- AI chatbot
-- Task sharing
-- Admin roles
-
-## Development Workflow
-1. Write or read spec → @specs/features/*.md
-2. Implement backend first
-3. Implement frontend next
-4. Verify spec compliance
-5. Iterate only via spec updates
-
-## Output Expectations
-- Clean and readable code
-- Environment variables for secrets
-- Production-ready structure
-- Clear separation between frontend and backend
-
-You must strictly follow this constitution for all Phase II work.
+**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
