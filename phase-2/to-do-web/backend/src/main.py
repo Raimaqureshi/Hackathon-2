@@ -20,7 +20,7 @@ def root():
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://hackathon-2-jb26mlw8k-raima-qureshi-s-projects.vercel.app",
+        "https://hackathon-2-mo1p74szg-raima-qureshi-s-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
