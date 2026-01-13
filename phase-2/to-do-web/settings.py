@@ -11,7 +11,7 @@ MIDDLEWARE = [
 
 # Allow your frontend origin
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "https://hackathon-2-jb26mlw8k-raima-qureshi-s-projects.vercel.app",
 ]
 
 # Or allow all origins (not recommended for production)

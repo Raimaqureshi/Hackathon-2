@@ -21,11 +21,7 @@ def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
 if __name__ == "__main__":
-    # Create the database and tables before starting the server
     create_db_and_tables()
-
-    # Run the FastAPI application using uvicorn
-    # The app is defined in src/main.py as "app"
-    # Disable reload for production/stable testing
-    # Use port 8001 to avoid conflicts
-    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=False)
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run("src.main:app", host="0.0.0.0", port=port, reload=False)
+    print(f"Server is running on https://raima-123-qureshi-to-do-fullstack.hf.space")

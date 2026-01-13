@@ -1,7 +1,7 @@
 import { Task, UserCreate } from '@/lib/types';
 import { getToken } from './auth-client';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://raima-123-qureshi-to-do-fullstack.hf.space';
 
 async function fetchWithAuth(url: string, options?: RequestInit) {
   const token = getToken();

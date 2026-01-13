@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = 'https://raima-123-qureshi-to-do-fullstack.hf.space';
 
 type AuthPayload = {
   email: string;

@@ -20,12 +20,7 @@ def root():
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:5173",
-        "http://localhost:3001",
-        "http://127.0.0.1:3001",
-        "http://127.0.0.1:8001",  # Our API port
+        "https://hackathon-2-jb26mlw8k-raima-qureshi-s-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
