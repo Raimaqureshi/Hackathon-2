@@ -12,6 +12,10 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "FastAPI on Vercel!"}
+
 # ✅ CORS CONFIG (yeh zaroori hai)
 app.add_middleware(
     CORSMiddleware,
