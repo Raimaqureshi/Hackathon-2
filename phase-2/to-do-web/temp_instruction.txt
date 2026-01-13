@@ -1,1 +1,0 @@
-I am awaiting your confirmation that the backend server has been stopped. Once you confirm, I will restart the backend in the background and then confirm that both frontend and backend are running as expected.
