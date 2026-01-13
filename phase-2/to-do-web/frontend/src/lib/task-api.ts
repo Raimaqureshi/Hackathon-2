@@ -8,7 +8,7 @@ async function fetchWithAuth(url: string, options?: RequestInit) {
   const headers = {
     ...options?.headers,
     'Content-Type': 'application/json',
-  };
+  } as Record<string, string>;
 
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
