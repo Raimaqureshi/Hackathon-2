@@ -4,7 +4,7 @@ import traceback
 from dotenv import load_dotenv
 from sqlmodel import create_engine, SQLModel
 import uvicorn
-from src.index import app
+from src.main import app
 
 # Load environment variables from .env file
 load_dotenv()

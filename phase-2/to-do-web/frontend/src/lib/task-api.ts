@@ -1,12 +1,12 @@
 import { Task, UserCreate } from '@/lib/types';
 import { getToken } from './auth-client';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8001';
 
 async function fetchWithAuth(url: string, options?: RequestInit) {
   const token = getToken();
-  const headers: Record<string, string> = {
-    ...(options?.headers as Record<string, string>),
+  const headers = {
+    ...options?.headers,
     'Content-Type': 'application/json',
   };
 

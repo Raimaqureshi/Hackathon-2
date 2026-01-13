@@ -27,5 +27,5 @@ if __name__ == "__main__":
     # Run the FastAPI application using uvicorn
     # The app is defined in src/main.py as "app"
     # Disable reload for production/stable testing
-    # Use port 8000 to avoid conflicts
+    # Use port 8001 to avoid conflicts
     uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=False)
