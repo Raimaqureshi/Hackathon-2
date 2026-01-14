@@ -24,16 +24,20 @@ def signup(user: UserCreate, session: Session = Depends(get_session)):
         db_user = user_service.get_user_by_email(email=user.email)
         if db_user:
             logger.warning(f"Email already registered: {user.email}")
-            raise HTTPException(status_code=400, detail="Email already registered")
+            raise HTTPException(status_code=400, detail="Email already exists, please try a different one")
 
         logger.debug(f"Creating new user with email: {user.email}")
         result = user_service.create_user(email=user.email, password=user.password)
         logger.debug(f"User created successfully: {result.id}")
         return result
+    except HTTPException:
+        # Re-raise HTTP exceptions (like the email already exists error)
+        raise
     except Exception as e:
         logger.error(f"Signup error: {str(e)}")
         logger.error(traceback.format_exc())
-        raise HTTPException(status_code=500, detail=f"Signup failed: {str(e)}")
+        # Provide a generic error message to avoid exposing internal details
+        raise HTTPException(status_code=500, detail="Signup failed. Please try again.")
 
 
 @router.post("/login", response_model=Token)
