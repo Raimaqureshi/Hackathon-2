@@ -15,7 +15,7 @@ The frontend includes a centralized configuration in `src/config/api.ts`:
 
 ```typescript
 export const API_CONFIG = {
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'https://raima-123-qureshi-to-do-fullstack.hf.space',
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'https://raima-123-qureshi-to-do-web.hf.space',
   TIMEOUT: 10000, // 10 seconds
   RETRY_ATTEMPTS: 3,
   RATE_LIMIT_DELAY: 1000, // 1 second delay before retry after rate limit

@@ -3,8 +3,8 @@ from typing import Dict
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 from .database import create_db_and_tables
 from src.api import auth, tasks
@@ -32,7 +32,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://hackathon-2-mo1p74szg-raima-qureshi-s-projects.vercel.app",
-        "https://raima-123-qureshi-to-do-fullstack.hf.space",
+        "https://raima-123-qureshi-to-do-web.hf.space",
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:8000",
