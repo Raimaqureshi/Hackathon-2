@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
+app.router.redirect_slashes = False
 
 @app.get("/")
 def root():
@@ -21,6 +22,10 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://hackathon-2-mo1p74szg-raima-qureshi-s-projects.vercel.app",
+        "https://raima-123-qureshi-to-do-fullstack.hf.space",
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "*"
     ],
     allow_credentials=True,
     allow_methods=["*"],

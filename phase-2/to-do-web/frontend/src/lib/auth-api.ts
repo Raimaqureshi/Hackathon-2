@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://raima-123-qureshi-to-do-fullstack.hf.space';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://raima-123-qureshi-to-do-fullstack.hf.space';
 
 type AuthPayload = {
   email: string;
