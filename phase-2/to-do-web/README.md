@@ -14,10 +14,16 @@ This project implements a full-stack Todo web application with user authenticati
 ## Features
 
 -   User Authentication (Signup, Login, Logout)
--   JWT-based authentication
+-   JWT-based authentication with refresh tokens
+-   Rate limiting on authentication endpoints
 -   Task Management (Create, Read, Update, Delete)
 -   User-specific task ownership
--   Responsive UI
+-   Responsive UI with dark mode support
+-   Offline support with service worker
+-   Enhanced error handling and validation
+-   Configurable API endpoints
+-   Request retry logic with exponential backoff
+-   Centralized configuration management
 
 ## Technology Stack
 
@@ -165,7 +171,7 @@ The frontend application will be available at `http://localhost:3000`.
 ### Authentication
 
 -   `POST /api/auth/signup`: Register a new user.
--   `POST /api/auth/login`: Authenticate user and get JWT.
+-   `POST /api/auth/login`: Authenticate user and get JWT. (Rate limited: 5 requests/minute)
 -   `POST /api/auth/logout`: (Client-side token removal) Backend endpoint is a placeholder.
 
 ### Tasks
@@ -176,3 +182,8 @@ The frontend application will be available at `http://localhost:3000`.
 -   `PUT /api/tasks/{id}`: Update a specific task by ID for the authenticated user. (Requires authentication)
 -   `PATCH /api/tasks/{id}/complete`: Toggle completion status of a task by ID for the authenticated user. (Requires authentication)
 -   `DELETE /api/tasks/{id}`: Delete a specific task by ID for the authenticated user. (Requires authentication)
+
+### Health Checks
+
+-   `GET /health`: Application health check
+-   `GET /ready`: Application readiness check

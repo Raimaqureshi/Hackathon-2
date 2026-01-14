@@ -8,3 +8,4 @@ python-jose
 python-dotenv
 email-validator
 pydantic[email]
+slowapi

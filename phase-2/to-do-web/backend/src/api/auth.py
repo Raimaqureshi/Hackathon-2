@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from sqlmodel import Session
 from ..database import get_session
 from src.auth.schemas import UserCreate, UserRead, LoginRequest, Token
@@ -8,6 +10,9 @@ from src.auth.jwt import create_access_token
 from datetime import timedelta
 import traceback
 import logging
+
+# Initialize rate limiter for this module
+limiter = Limiter(key_func=get_remote_address)
 
 router = APIRouter()
 
@@ -41,7 +46,8 @@ def signup(user: UserCreate, session: Session = Depends(get_session)):
 
 
 @router.post("/login", response_model=Token)
-def login(form_data: LoginRequest, session: Session = Depends(get_session)):
+@limiter.limit("5/minute")
+def login(request, form_data: LoginRequest, session: Session = Depends(get_session)):
     user_service = UserService(session)
     user = user_service.get_user_by_email(email=form_data.email)
     if not user or not verify_password(form_data.password, user.hashed_password):
